@@ -36,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: KaloriBottomNav(
           currentIndex: selectedIndex,
           onTap: (index) {
-            setState(() => selectedIndex = index);
+            setState(() {
+              selectedIndex = index;
+            });
           },
         ),
         floatingActionButton: selectedIndex == 0
