@@ -15,7 +15,10 @@ class LoginScreen extends StatelessWidget {
     final authService = AuthService();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text('Login'),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
