@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../routes/app_routes.dart';
-
 class KaloriBottomNav extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
