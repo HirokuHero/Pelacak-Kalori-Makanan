@@ -6,9 +6,9 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(seedColor: seed, brightness: Brightness.light),
+      colorScheme:
+          ColorScheme.fromSeed(seedColor: seed, brightness: Brightness.light),
       appBarTheme: const AppBarTheme(centerTitle: true),
     );
   }
 }
-

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'core/constants/app_constants.dart';
 import 'core/theme/app_theme.dart';
 import 'routes/app_routes.dart';
 
@@ -9,7 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kalori App',
+      title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.material3,
       onGenerateRoute: AppRoutes.onGenerateRoute,

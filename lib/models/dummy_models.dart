@@ -13,12 +13,17 @@ class HistoryItem {
 class ProfileData {
   final String name;
   final String email;
+  final String gender;
+  final double currentWeight;
   final double targetWeight;
+  final double height;
 
   const ProfileData({
     required this.name,
     required this.email,
+    required this.gender,
+    required this.currentWeight,
     required this.targetWeight,
+    required this.height,
   });
 }
-

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../routes/app_routes.dart';
-import '../../../widgets/kalori_bottom_nav.dart';
+import '../../routes/app_routes.dart';
+import '../../widgets/info_card.dart';
+import '../../widgets/kalori_bottom_nav.dart';
 import '../history/history_screen.dart';
 import '../profile/profile_screen.dart';
 import '../scan/scan_screen.dart';
@@ -41,11 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButton: selectedIndex == 0
             ? FloatingActionButton.extended(
-                onPressed: () {
-                  // Navigasi ke scan tab
-                  setState(() => selectedIndex = 1);
-                  Navigator.pushReplacementNamed(context, AppRoutes.scan);
-                },
+                onPressed: () => setState(() => selectedIndex = 1),
                 icon: const Icon(Icons.camera_alt),
                 label: const Text('Scan'),
               )
@@ -57,6 +54,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class _HomeTab extends StatelessWidget {
   const _HomeTab();
+
+  static const _targets = [
+    InfoCard(
+        icon: Icons.local_fire_department,
+        label: 'Target Kalori',
+        value: '2000 kcal'),
+    InfoCard(icon: Icons.restaurant, label: 'Target Protein', value: '120 g'),
+    InfoCard(icon: Icons.water_drop, label: 'Target Air Minum', value: '2.5 L'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -73,67 +79,7 @@ class _HomeTab extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 16),
-            _TargetCard(
-              title: 'Target Kalori',
-              value: '2000 kcal',
-              icon: Icons.local_fire_department,
-            ),
-            _TargetCard(
-              title: 'Target Protein',
-              value: '120 g',
-              icon: Icons.restaurant,
-            ),
-            _TargetCard(
-              title: 'Target Air Minum',
-              value: '2.5 L',
-              icon: Icons.water_drop,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _TargetCard extends StatelessWidget {
-  final String title;
-  final String value;
-  final IconData icon;
-
-  const _TargetCard({
-    required this.title,
-    required this.value,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Icon(icon, size: 28),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    value,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                  ),
-                ],
-              ),
-            ),
+            ..._targets,
           ],
         ),
       ),

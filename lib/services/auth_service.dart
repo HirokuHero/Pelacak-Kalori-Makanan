@@ -5,4 +5,3 @@ class AuthService {
     return Validators.isValidLogin(username: username, password: password);
   }
 }
-
