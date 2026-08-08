@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/providers.dart';
 import '../../routes/app_routes.dart';
 import '../../widgets/info_card.dart';
 import '../../widgets/kalori_bottom_nav.dart';
@@ -52,34 +54,45 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class _HomeTab extends StatelessWidget {
+class _HomeTab extends ConsumerWidget {
   const _HomeTab();
 
-  static const _targets = [
-    InfoCard(
-        icon: Icons.local_fire_department,
-        label: 'Target Kalori',
-        value: '2000 kcal'),
-    InfoCard(icon: Icons.restaurant, label: 'Target Protein', value: '120 g'),
-    InfoCard(icon: Icons.water_drop, label: 'Target Air Minum', value: '2.5 L'),
-  ];
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final targetCalories = ref.watch(targetCaloriesProvider);
+
     return Scaffold(
       appBar:
           AppBar(automaticallyImplyLeading: false, title: const Text('Home')),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(16),
-          children: const [
-            SizedBox(height: 8),
-            Text(
+          children: [
+            const SizedBox(height: 8),
+            const Text(
               'Selamat Datang',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 16),
-            ..._targets,
+            const SizedBox(height: 16),
+            InfoCard(
+              icon: Icons.local_fire_department,
+              label: 'Target Kalori',
+              value: targetCalories.when(
+                data: (value) => '$value kcal',
+                loading: () => '...',
+                error: (_, __) => '-',
+              ),
+            ),
+            const InfoCard(
+              icon: Icons.restaurant,
+              label: 'Target Protein',
+              value: '120 g',
+            ),
+            const InfoCard(
+              icon: Icons.water_drop,
+              label: 'Target Air Minum',
+              value: '2.5 L',
+            ),
           ],
         ),
       ),

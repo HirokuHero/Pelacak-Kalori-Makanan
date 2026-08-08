@@ -8,12 +8,14 @@ class HomeBackScaffold extends StatelessWidget {
   final String title;
   final Widget body;
   final Widget? floatingActionButton;
+  final List<Widget>? actions;
 
   const HomeBackScaffold({
     super.key,
     required this.title,
     required this.body,
     this.floatingActionButton,
+    this.actions,
   });
 
   static void _goHome(BuildContext context) {
@@ -35,6 +37,7 @@ class HomeBackScaffold extends StatelessWidget {
             onPressed: () => _goHome(context),
           ),
           title: Text(title),
+          actions: actions,
         ),
         body: SafeArea(child: body),
         floatingActionButton: floatingActionButton,
